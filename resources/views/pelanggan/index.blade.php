@@ -1148,9 +1148,6 @@ window.onload = function(){
     }
 }
 
-</script>
-<script>
-
 window.onload = function(){
 
     if(window.location.hash === "#cartModal"){
@@ -1166,6 +1163,7 @@ window.onload = function(){
 }
 
 </script>
+
 
 <script>
 
