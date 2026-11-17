@@ -199,6 +199,11 @@ $grandTotal += $cart->total_harga;
 
 </h1>
 
+<form action="{{ route('checkout') }}"
+      method="POST">
+
+@csrf
+
 <div class="mb-4">
 
     <label class="form-label fw-bold">
@@ -231,11 +236,6 @@ $grandTotal += $cart->total_harga;
     </select>
 
 </div>
-
-<form action="{{ route('checkout') }}"
-      method="POST">
-
-@csrf
 
 <input type="text"
        name="nama_pembeli"

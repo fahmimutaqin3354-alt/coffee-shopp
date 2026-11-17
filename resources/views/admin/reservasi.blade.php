@@ -243,9 +243,9 @@ class="mt-3">
 <select name="status"
 class="form-select mb-2">
 
-<option>Menunggu</option>
-<option>Disetujui</option>
-<option>Dibatalkan</option>
+<option value="Menunggu" {{ $r->status == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
+<option value="Disetujui" {{ $r->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
+<option value="Dibatalkan" {{ $r->status == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
 
 </select>
 

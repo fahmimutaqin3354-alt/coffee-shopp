@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOIR COFFEE — Sistem Pakar Deteksi Mood Pelanggan (CF)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts Inter & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            noir: {
+              950: '#0a0702',
+              900: '#120d04',
+              850: '#181206',
+              800: '#201808',
+              750: '#2a200b',
+              700: '#382a0e',
+              gold: '#c89b3c',
+              'gold-light': '#e5c378',
+              'gold-dark': '#9b7625',
+              'gold-muted': 'rgba(200, 155, 60, 0.15)'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0c0803;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(200, 155, 60, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(200, 155, 60, 0.05) 0%, transparent 50%);
+      min-height: 100vh;
+      color: #f3f4f6;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(18, 13, 4, 0.5);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(200, 155, 60, 0.3);
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(200, 155, 60, 0.6);
+    }
+    .gold-glow {
+      box-shadow: 0 0 25px rgba(200, 155, 60, 0.2);
+    }
+    .active-tag {
+      background: linear-gradient(135deg, rgba(200, 155, 60, 0.25) 0%, rgba(32, 24, 8, 0.95) 100%) !important;
+      border-color: #c89b3c !important;
+      box-shadow: 0 0 15px rgba(200, 155, 60, 0.25);
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .pulse-badge {
+      animation: pulse-subtle 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-noir-gold selection:text-black">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-noir-900/90 backdrop-blur-md border-b border-noir-gold/20 px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-noir-gold to-noir-gold-dark flex items-center justify-center text-noir-950 font-serif font-black text-xl shadow-lg shadow-noir-gold/20">
+          N
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-serif font-bold tracking-wider text-noir-gold-light text-base lg:text-lg">NOIR COFFEE</span>
+            <span class="text-[10px] tracking-widest uppercase px-2 py-0.5 rounded-full bg-noir-gold/15 text-noir-gold font-bold border border-noir-gold/30">Karyawan</span>
+          </div>
+          <p class="text-xs text-gray-400">Sistem Pakar Respon Cepat Pelanggan &bull; Certainty Factor</p>
+        </div>
+      </div>
+
+      <!-- Action Nav Buttons -->
+      <div class="flex items-center space-x-2 lg:space-x-3">
+        <!-- Live Clock -->
+        <div class="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-noir-850 border border-noir-gold/15 text-xs text-gray-300 font-mono">
+          <i class="bi bi-clock text-noir-gold"></i>
+          <span id="liveClock">--:--:-- WIB</span>
+        </div>
+
+        <!-- Tombol Riwayat -->
+        <button id="btnOpenHistory" class="px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 border border-noir-gold/30 text-xs font-semibold text-noir-gold-light transition flex items-center space-x-1.5 shadow-sm">
+          <i class="bi bi-journal-text text-sm"></i>
+          <span class="hidden md:inline">Riwayat Interaksi</span>
+          <span id="historyBadgeCount" class="w-5 h-5 rounded-full bg-noir-gold/20 text-noir-gold text-[10px] flex items-center justify-center font-bold">0</span>
+        </button>
+
+        <!-- Tombol Reset Cepat -->
+        <button id="btnResetQuick" class="px-3 py-1.5 rounded-lg bg-red-950/30 hover:bg-red-900/50 border border-red-500/30 text-xs font-semibold text-red-300 transition flex items-center space-x-1.5">
+          <i class="bi bi-arrow-counterclockwise text-sm"></i>
+          <span class="hidden sm:inline">Reset Input</span>
+        </button>
+
+        <!-- Link Back to Laravel POS Kasir -->
+        <a href="http://127.0.0.1:8000/kasir" target="_blank" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-noir-gold to-noir-gold-dark hover:from-noir-gold-light hover:to-noir-gold text-black text-xs font-bold transition flex items-center space-x-1.5 shadow-md shadow-noir-gold/20">
+          <i class="bi bi-cart4 text-sm"></i>
+          <span>Kembali ke POS</span>
+          <i class="bi bi-arrow-up-right text-[10px]"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-5">
+    
+    <!-- TOP NOTIFICATION BANNER / SPEED BADGE -->
+    <div class="mb-5 p-3 rounded-xl bg-gradient-to-r from-noir-850 via-noir-800 to-noir-850 border border-noir-gold/25 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center space-x-2 text-gray-300">
+        <span class="w-6 h-6 rounded-lg bg-noir-gold/20 flex items-center justify-center text-noir-gold font-bold">
+          <i class="bi bi-lightning-charge-fill"></i>
+        </span>
+        <span>
+          <strong class="text-noir-gold-light">Mode Respon Kilat (&lt; 10 Detik):</strong>
+          Cukup klik <strong>3 - 5 tanda</strong> yang terlihat pada ekspresi atau gerak tubuh pelanggan. Rekomendasi dihitung otomatis real-time.
+        </span>
+      </div>
+      <div class="flex items-center space-x-3 text-gray-400">
+        <span>Tanda Terpilih: <strong id="selectedCountBadge" class="text-noir-gold text-sm font-bold">0</strong></span>
+        <span class="text-gray-600">|</span>
+        <span>Confidence Engine: <strong class="text-emerald-400 font-mono">Active (CF)</strong></span>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN WORKSPACE -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT COLUMN: QUICK SYMPTOM TAGS (COL 7) -->
+      <section class="lg:col-span-7 flex flex-col space-y-4">
+        
+        <!-- Category Filter Pills -->
+        <div class="bg-noir-900 border border-noir-gold/20 rounded-2xl p-4 shadow-xl">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-noir-gold-light flex items-center space-x-2">
+              <i class="bi bi-funnel-fill text-noir-gold"></i>
+              <span>1. Checklist Cepat Tanda Pelanggan</span>
+            </h2>
+            <span class="text-[11px] text-gray-400">Klik tag untuk aktifkan</span>
+          </div>
+
+          <!-- Category Pills -->
+          <div id="categoryPills" class="flex flex-wrap gap-1.5 pb-2 border-b border-noir-gold/15 mb-3">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Default Confidence Selector -->
+          <div class="flex items-center justify-between bg-noir-850 px-3 py-2 rounded-xl border border-noir-gold/15 text-xs">
+            <span class="text-gray-300 flex items-center space-x-1.5">
+              <i class="bi bi-sliders text-noir-gold"></i>
+              <span>Keyakinan Pengamatan Karyawan:</span>
+            </span>
+            <div id="confidenceRadioGroup" class="flex items-center space-x-1.5">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Symptoms Grid Cards -->
+        <div class="bg-noir-900 border border-noir-gold/20 rounded-2xl p-4 shadow-xl flex-1 flex flex-col">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs text-gray-400">Pilih tanda yang cocok dengan kondisi saat ini:</span>
+            <button id="btnUncheckAll" class="text-xs text-gray-400 hover:text-noir-gold transition flex items-center space-x-1">
+              <i class="bi bi-x-circle"></i>
+              <span>Hapus Pilihan</span>
+            </button>
+          </div>
+
+          <!-- Symptom Items Container -->
+          <div id="symptomsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[580px] overflow-y-auto pr-1 custom-scroll">
+            <!-- Rendered by JS -->
+            <div class="col-span-2 py-12 text-center text-gray-500">
+              <i class="bi bi-arrow-repeat text-2xl animate-spin inline-block text-noir-gold mb-2"></i>
+              <p>Memuat basis pengetahuan gejala...</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: REAL-TIME REASONING & ACTION ADVISORY (COL 5) -->
+      <section class="lg:col-span-5 flex flex-col space-y-4">
+
+        <!-- DOMINANT MOOD CARD -->
+        <div id="dominantMoodCard" class="bg-noir-900 border border-noir-gold/25 rounded-2xl p-5 shadow-2xl relative overflow-hidden transition-all duration-300">
+          
+          <!-- Background Glow Effect -->
+          <div id="moodGlowBg" class="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-noir-gold/10 blur-3xl pointer-events-none transition-all duration-500"></div>
+
+          <!-- Header status -->
+          <div class="flex items-center justify-between mb-3 relative z-10">
+            <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold flex items-center space-x-1.5">
+              <i class="bi bi-cpu text-noir-gold"></i>
+              <span>Hasil Analisis Inferensi (CF)</span>
+            </span>
+            <span id="dominantMoodStatusBadge" class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">
+              Menunggu Input
+            </span>
+          </div>
+
+          <!-- Empty State (No symptoms selected) -->
+          <div id="emptyMoodState" class="py-8 text-center text-gray-400">
+            <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-noir-800 border border-noir-gold/20 flex items-center justify-center text-3xl text-noir-gold-light">
+              <i class="bi bi-person-bounding-box"></i>
+            </div>
+            <h3 class="text-base font-bold text-gray-200 mb-1">Amati Pelanggan di Depan Kasir</h3>
+            <p class="text-xs text-gray-400 max-w-xs mx-auto">
+              Pilih 1 atau beberapa tanda di sebelah kiri. Sistem Certainty Factor akan langsung mengidentifikasi mood dominan beserta panduan respon.
+            </p>
+          </div>
+
+          <!-- Result State (Active inference) -->
+          <div id="resultMoodState" class="hidden relative z-10">
+            
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div id="dominantMoodIconWrapper" class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                  <i id="dominantMoodIcon" class="bi bi-emoji-smile-fill"></i>
+                </div>
+                <div>
+                  <h3 id="dominantMoodTitle" class="text-xl font-bold font-serif text-white tracking-wide">
+                    Puas / Ramah
+                  </h3>
+                  <p id="dominantMoodSubtitle" class="text-xs text-gray-300 mt-0.5">
+                    Pelanggan menunjukkan keramahan dan suasana hati santai
+                  </p>
+                </div>
+              </div>
+
+              <!-- Confidence Percentage Circle/Badge -->
+              <div class="text-right">
+                <div class="text-2xl font-black font-mono tracking-tight" id="dominantMoodPercentage">
+                  85.0%
+                </div>
+                <div class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">
+                  Tingkat Keyakinan
+                </div>
+              </div>
+            </div>
+
+            <!-- All Moods Ranking Progress Bars -->
+            <div class="bg-noir-950/60 rounded-xl p-3 border border-noir-gold/15 mb-4 space-y-2">
+              <div class="text-[11px] font-semibold text-gray-300 flex justify-between">
+                <span>Distribusi Keyakinan Mood:</span>
+                <span class="text-gray-400 font-mono text-[10px]">CF Combine</span>
+              </div>
+              <div id="allMoodsBars" class="space-y-1.5">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- DO's & DON'T's Guidance -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <!-- DO'S -->
+              <div class="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-3">
+                <div class="flex items-center space-x-1.5 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>WAJIB DILAKUKAN (DO)</span>
+                </div>
+                <ul id="dominantDosList" class="text-xs text-gray-200 space-y-1.5 list-disc list-inside">
+                  <!-- Rendered dynamically -->
+                </ul>
+              </div>
+
+              <!-- DON'TS -->
+              <div class="bg-red-950/20 border border-red-500/30 rounded-xl p-3">
+                <div class="flex items-center space-x-1.5 text-red-400 text-xs font-bold uppercase tracking-wider mb-2">
+                  <i class="bi bi-x-octagon-fill"></i>
+                  <span>DILARANG DILAKUKAN (DON'T)</span>
+                </div>
+                <ul id="dominantDontsList" class="text-xs text-gray-200 space-y-1.5 list-disc list-inside">
+                  <!-- Rendered dynamically -->
+                </ul>
+              </div>
+            </div>
+
+            <!-- SCRIPT / CONTOH KALIMAT RESPON -->
+            <div class="bg-noir-850 border border-noir-gold/30 rounded-xl p-3.5 mb-4 relative">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-noir-gold-light flex items-center space-x-1.5">
+                  <i class="bi bi-chat-quote-fill text-noir-gold"></i>
+                  <span>Skrip Kalimat Kasir (Ucapkan Ini)</span>
+                </span>
+                <button id="btnCopyScript" class="px-2.5 py-1 rounded bg-noir-gold/20 hover:bg-noir-gold text-noir-gold hover:text-black font-semibold text-[11px] transition flex items-center space-x-1 border border-noir-gold/40">
+                  <i class="bi bi-clipboard"></i>
+                  <span>Salin Skrip</span>
+                </button>
+              </div>
+              <div id="dominantScriptBox" class="text-xs text-gray-200 italic bg-noir-900/80 p-3 rounded-lg border border-noir-gold/15 leading-relaxed">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- RECOMMENDED MENU PAIRING -->
+            <div class="bg-noir-850/80 border border-noir-gold/20 rounded-xl p-3.5 mb-4 flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-noir-gold/15 border border-noir-gold/30 flex items-center justify-center text-noir-gold text-xl flex-shrink-0">
+                <i class="bi bi-cup-hot-fill"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <span class="text-[10px] uppercase tracking-wider text-noir-gold font-bold">Rekomendasi Menu Pelengkap Mood</span>
+                <h4 id="dominantMenuName" class="text-xs font-bold text-white truncate">Matcha Espresso Fusion</h4>
+                <p id="dominantMenuReason" class="text-[11px] text-gray-300 line-clamp-1">Kombinasi menenangkan untuk mood pelanggan saat ini.</p>
+              </div>
+            </div>
+
+            <!-- SAVE LOG INTERACTION BUTTON -->
+            <button id="btnOpenSaveModal" class="w-full py-2.5 px-4 rounded-xl bg-noir-800 hover:bg-noir-750 border border-noir-gold/40 text-noir-gold-light text-xs font-bold tracking-wide transition flex items-center justify-center space-x-2 shadow-lg">
+              <i class="bi bi-bookmark-plus-fill text-sm"></i>
+              <span>Simpan Catatan Interaksi ke Riwayat Shift</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- MODAL: SIMPAN CATATAN INTERAKSI -->
+  <div id="saveModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-noir-900 border border-noir-gold/40 rounded-2xl max-w-md w-full p-5 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-noir-gold/20 mb-4">
+        <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+          <i class="bi bi-journal-plus text-noir-gold"></i>
+          <span>Simpan Catatan Interaksi Shift</span>
+        </h3>
+        <button id="btnCloseSaveModal" class="text-gray-400 hover:text-white transition">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <form id="saveLogForm" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Identitas / Ciri Pelanggan</label>
+          <input type="text" id="logCustomerIdentifier" placeholder="Contoh: Meja 04 / Pria Kemeja Hitam / Walk-in" class="w-full px-3 py-2 rounded-xl bg-noir-850 border border-noir-gold/25 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-noir-gold" required>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Catatan Tindakan Kasir (Opsional)</label>
+          <textarea id="logNotes" rows="3" placeholder="Contoh: Diberikan rekomendasi Cold Brew Express, pelanggan puas disajikan dalam 2 menit." class="w-full px-3 py-2 rounded-xl bg-noir-850 border border-noir-gold/25 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-noir-gold"></textarea>
+        </div>
+
+        <div class="p-3 rounded-xl bg-noir-850 border border-noir-gold/15 text-xs text-gray-300 space-y-1">
+          <div class="flex justify-between">
+            <span class="text-gray-400">Hasil Mood:</span>
+            <span id="saveModalMoodName" class="font-bold text-noir-gold">--</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-400">Keyakinan CF:</span>
+            <span id="saveModalMoodCf" class="font-mono text-emerald-400">--</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end space-x-2 pt-2">
+          <button type="button" id="btnCancelSave" class="px-4 py-2 rounded-xl bg-noir-850 text-xs text-gray-300 hover:text-white transition">
+            Batal
+          </button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-gradient-to-r from-noir-gold to-noir-gold-dark text-black text-xs font-bold hover:brightness-110 transition flex items-center space-x-1.5 shadow-md">
+            <i class="bi bi-check2-circle"></i>
+            <span>Simpan Log</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DRAWER RIWAYAT INTERAKSI -->
+  <div id="historyModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-noir-900 border border-noir-gold/40 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-noir-gold/20 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i class="bi bi-clock-history text-noir-gold text-lg"></i>
+          <div>
+            <h3 class="text-sm font-bold text-white">Log Riwayat Respon Pelanggan</h3>
+            <p class="text-[11px] text-gray-400">Histori interaksi kasir shift ini</p>
+          </div>
+        </div>
+        <button id="btnCloseHistoryModal" class="text-gray-400 hover:text-white transition">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (List) -->
+      <div id="historyListContainer" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scroll">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 py-3 border-t border-noir-gold/20 bg-noir-850/60 flex items-center justify-between text-xs text-gray-400">
+        <span>Total Tercatat: <strong id="historyTotalCount" class="text-noir-gold">0</strong> interaksi</span>
+        <button id="btnCloseHistoryModalBtn" class="px-3.5 py-1.5 rounded-lg bg-noir-800 hover:bg-noir-750 text-gray-200 transition font-semibold">
+          Tutup
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATION -->
+  <div id="toastNotification" class="fixed bottom-5 right-5 z-50 bg-noir-850 border border-noir-gold/50 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-2.5 text-xs transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none">
+    <i id="toastIcon" class="bi bi-check-circle-fill text-emerald-400 text-sm"></i>
+    <span id="toastMessage">Pesan berhasil</span>
+  </div>
+
+  <!-- Application Script -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -285,15 +285,12 @@ body{
 </div>
 
 <script>
-
-Echo.channel('pesanan-channel')
-
-.listen('.status.updated', (e) => {
-
-    location.reload();
-
-});
-
+if (typeof Echo !== 'undefined') {
+    Echo.channel('pesanan-channel')
+    .listen('.status.updated', (e) => {
+        location.reload();
+    });
+}
 </script>
 
 </body>

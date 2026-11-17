@@ -614,6 +614,12 @@ border-radius:20px;
 
     </a>
 
+    <a href="{{ route('rekomendasi.index') }}"
+       class="btn btn-top fw-bold"
+       style="background: linear-gradient(135deg, #d4a745 0%, #b88628 100%); color: #140f05; border: none; box-shadow: 0 4px 15px rgba(200,155,60,0.3);">
+        ✨ Rekomendasi Kopi
+    </a>
+
     <button onclick="toggleDarkMode()"
         id="darkModeBtn"
         class="btn btn-dark btn-top btn-darkmode">
@@ -625,8 +631,6 @@ border-radius:20px;
        class="btn btn-dark btn-top">
 
         📦 Status Pesanan
-
-    </a>
 
     </a>
 
@@ -1132,7 +1136,7 @@ function toggleDarkMode(){
 }
 
 // load saat refresh
-window.onload = function(){
+document.addEventListener('DOMContentLoaded', function(){
 
     let btn = document.getElementById('darkModeBtn');
 
@@ -1140,27 +1144,24 @@ window.onload = function(){
 
         document.body.classList.add('dark-mode');
 
-        btn.innerHTML = '☀ Light Mode';
+        if(btn) btn.innerHTML = '☀ Light Mode';
 
     }else{
 
-        btn.innerHTML = '🌙 Dark Mode';
+        if(btn) btn.innerHTML = '🌙 Dark Mode';
     }
-}
-
-window.onload = function(){
 
     if(window.location.hash === "#cartModal"){
 
-        let modal = new bootstrap.Modal(
-            document.getElementById('cartModal')
-        );
-
-        modal.show();
+        let modalEl = document.getElementById('cartModal');
+        if(modalEl){
+            let modal = new bootstrap.Modal(modalEl);
+            modal.show();
+        }
 
     }
 
-}
+});
 
 </script>
 

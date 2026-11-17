@@ -1,0 +1,250 @@
+{
+  "categories": [
+    "Semua",
+    "Suara & Bicara",
+    "Gerak Tubuh & Bahasa Tubuh",
+    "Perilaku Pemesanan",
+    "Ekspresi & Wajah"
+  ],
+  "confidenceLevels": [
+    { "value": 0.4, "label": "Ragu / Kurang Yakin" },
+    { "value": 0.7, "label": "Yakin (Standar)" },
+    { "value": 1.0, "label": "Sangat Yakin / Jelas" }
+  ],
+  "moods": {
+    "M01": {
+      "code": "M01",
+      "name": "Marah / Frustrasi",
+      "subtitle": "Pelanggan merasa jengkel, kecewa, atau kesal",
+      "color": "#ef4444",
+      "bgSoft": "rgba(239, 68, 68, 0.15)",
+      "border": "#dc2626",
+      "icon": "bi-emoji-angry-fill",
+      "dos": [
+        "Dengarkan keluhan secara aktif dengan kontak mata hormat tanpa memotong pembicaraan.",
+        "Sampaikan permohonan maaf atas ketidaknyamanan dengan tulus dan nada rendah yang tenang.",
+        "Segera prioritaskan pembuatan pesanan atau tawarkan complimentary pastry/diskon.",
+        "Tunjukkan bahasa tubuh terbuka (tangan tidak melipat) dan fokus membantu."
+      ],
+      "donts": [
+        "DILARANG mendebat, menyela, atau menyalahkan pelanggan/rekan kerja.",
+        "DILARANG memasang senyum sinis atau ekspresi meremehkan masalah.",
+        "DILARANG berkata 'Bukan salah saya' atau 'Memang aturannya seperti itu'.",
+        "DILARANG membuat pelanggan menunggu penjelasan terlalu berbelit-belit."
+      ],
+      "scripts": [
+        "\"Mohon maaf sekali atas ketidaknyamanan yang dialami hari ini ya Kak. Saya sangat memahami situasi ini mengecewakan. Izinkan saya segera memprioritaskan pesanan Kakak sekarang juga, kami selesaikan dalam waktu tercepat!\"",
+        "\"Terima kasih banyak atas masukannya Kak, kami sangat menghargai kesabaran Kakak. Sebagai permohonan maaf tulus dari tim kami, silakan nikmati pastry spesial ini sambil menunggu minumannya disajikan ya Kak.\""
+      ],
+      "recommendedMenu": {
+        "nama": "Iced Caramel Macchiato & Chocolate Croissant",
+        "alasan": "Minuman manis gurih dengan cokelat/karamel terbukti secara neurobiologis cepat menenangkan hormon kortisol stres."
+      }
+    },
+    "M02": {
+      "code": "M02",
+      "name": "Terburu-buru / Gelisah",
+      "subtitle": "Pelanggan dikejar waktu meeting, kerja, atau transportasi",
+      "color": "#f59e0b",
+      "bgSoft": "rgba(245, 158, 11, 0.15)",
+      "border": "#d97706",
+      "icon": "bi-stopwatch-fill",
+      "dos": [
+        "Langsung tawarkan menu ready-to-serve (Cold Brew, Batch Brew, Americano siap saji).",
+        "Siapkan cup take-away, sedotan, dan kantong take-out secara proaktif di awal.",
+        "Proses transaksi kasir dan struk/QRIS dalam tempo tercepat (< 30 detik).",
+        "Beri kepastian waktu penyajian pasti: 'Siap dalam 2 menit ya Kak!'."
+      ],
+      "donts": [
+        "DILARANG menawarkan menu yang butuh seduh manual lama (V60 manual brew).",
+        "DILARANG berbasa-basi atau memperpanjang obrolan saat pemesanan.",
+        "DILARANG meninggalkan kasir sebelum pesanan selesai terkirim ke barista.",
+        "DILARANG lambat dalam mencetak struk atau memberikan kembalian."
+      ],
+      "scripts": [
+        "\"Selamat pagi/siang Kak! Untuk yang paling segar dan langsung siap dalam 2 menit, kami sediakan Cold Brew Noir atau Iced Americano take-away. Mau langsung kami siapkan sekarang Kak?\"",
+        "\"Pesanan sudah kami teruskan ke barista prioritas ya Kak, silakan scan QRIS di sini dan minumannya langsung siap di meja pick-up dalam 90 detik!\""
+      ],
+      "recommendedMenu": {
+        "nama": "Cold Brew Noir & Iced Americano Take-away",
+        "alasan": "Ekstraksi siap saji tanpa antrean seduh mesin, memberikan dorongan energi instan untuk mobilitas tinggi."
+      }
+    },
+    "M03": {
+      "code": "M03",
+      "name": "Ragu-ragu / Bimbang",
+      "subtitle": "Pelanggan bingung memilih menu atau belum paham selera",
+      "color": "#06b6d4",
+      "bgSoft": "rgba(6, 182, 212, 0.15)",
+      "border": "#0891b2",
+      "icon": "bi-question-diamond-fill",
+      "dos": [
+        "Ajukan 1 pertanyaan pemandu sederhana: 'Lebih suka kopi creamy manis atau kopi hitam segar Kak?'.",
+        "Rekomendasikan maksimal 2 menu Best Seller utama NOIR COFFEE.",
+        "Beri waktu jeda sejenak tanpa tatapan menekan atau mengintimidasi.",
+        "Arahkan pelanggan untuk mencoba fitur konsultasi rekomendasi menu jika tertarik."
+      ],
+      "donts": [
+        "DILARANG mendesak pelanggan untuk segera memutuskan pilihan pesanan.",
+        "DILARANG menyebutkan terlalu banyak menu (> 3 pilihan memicu kebingungan).",
+        "DILARANG menggunakan jargon kopi yang rumit (notes floral, varietal, wash process) kecuali ditanya.",
+        "DILARANG menampakkan ekspresi bosan atau tidak sabar."
+      ],
+      "scripts": [
+        "\"Santai saja Kak, silakan dipilih dulu ya. Kalau Kakak suka yang lembut dan manis pas, paling favorit kami ada Kopi Gula Aren dan Vanilla Latte. Boleh kami buatkan salah satunya Kak?\"",
+        "\"Mau yang dingin atau hangat Kak? Jika ingin kopi yang aromatik tapi tidak terlalu pahit, Caffe Latte kami sangat cocok untuk pemula!\""
+      ],
+      "recommendedMenu": {
+        "nama": "Kopi Gula Aren Signature / Vanilla Latte",
+        "alasan": "Profil rasa manis gurih yang seimbang dan lembut di lidah, memiliki tingkat kepuasan 98% bagi pelanggan baru."
+      }
+    },
+    "M04": {
+      "code": "M04",
+      "name": "Puas / Ramah",
+      "subtitle": "Pelanggan bersemangat positif, ceria, dan apresiatif",
+      "color": "#10b981",
+      "bgSoft": "rgba(16, 185, 129, 0.15)",
+      "border": "#059669",
+      "icon": "bi-emoji-smile-fill",
+      "dos": [
+        "Sambut dengan senyum tulus, sapaan hangat, dan kontak mata positif yang bersahabat.",
+        "Manfaatkan kesempatan untuk upselling menu spesial atau pastry pendamping.",
+        "Tanyakan nama pelanggan untuk personalisasi tulisan ramah di cup kopi.",
+        "Ajak mengobrol ringan seputar racikan kopi hari ini jika kasir sedang senggang."
+      ],
+      "donts": [
+        "DILARANG merespon secara datar, dingin, atau monoton seperti robot.",
+        "DILARANG terburu-buru mengakhiri interaksi positif pelanggan yang ramah.",
+        "DILARANG melupakan ucapan terima kasih dan doa semoga hari pelanggan menyenangkan.",
+        "DILARANG mengabaikan pujian atau feedback positif yang diberikan pelanggan."
+      ],
+      "scripts": [
+        "\"Halo Kak! Senang sekali melihat Kakak ceria hari ini! Mau coba racikan Seasonal Beans terbaru kami yang baru roasting minggu ini? Sangat istimewa dinikmati dengan Brownies Ice Cream kami!\"",
+        "\"Terima kasih banyak atas senyum ramahnya hari ini Kak! Boleh saya tuliskan nama Kakak di cup agar barista kami buatkan dengan sepenuh hati? Semoga harinya semakin menyenangkan!\""
+      ],
+      "recommendedMenu": {
+        "nama": "Matcha Espresso Fusion & Brownies Ice Cream",
+        "alasan": "Kombinasi unik dan visual estetik yang menyempurnakan suasana hati ceria pelanggan."
+      }
+    }
+  },
+  "symptoms": [
+    {
+      "code": "G01",
+      "name": "Nada bicara tinggi, tajam, atau ketus",
+      "category": "Suara & Bicara",
+      "rules": [
+        { "mood": "M01", "cf": 0.85 },
+        { "mood": "M02", "cf": 0.40 }
+      ]
+    },
+    {
+      "code": "G02",
+      "name": "Mengeluhkan antrean atau waktu tunggu yang lama",
+      "category": "Suara & Bicara",
+      "rules": [
+        { "mood": "M01", "cf": 0.80 },
+        { "mood": "M02", "cf": 0.75 }
+      ]
+    },
+    {
+      "code": "G03",
+      "name": "Sering melihat jam tangan atau layar smartphone berulang kali",
+      "category": "Gerak Tubuh & Bahasa Tubuh",
+      "rules": [
+        { "mood": "M02", "cf": 0.85 }
+      ]
+    },
+    {
+      "code": "G04",
+      "name": "Mengetuk-ngetuk jari / meja kasir dengan gelisah",
+      "category": "Gerak Tubuh & Bahasa Tubuh",
+      "rules": [
+        { "mood": "M02", "cf": 0.80 },
+        { "mood": "M01", "cf": 0.50 }
+      ]
+    },
+    {
+      "code": "G05",
+      "name": "Menghela nafas panjang / mendesah berat di depan kasir",
+      "category": "Gerak Tubuh & Bahasa Tubuh",
+      "rules": [
+        { "mood": "M01", "cf": 0.70 },
+        { "mood": "M02", "cf": 0.60 }
+      ]
+    },
+    {
+      "code": "G06",
+      "name": "Postur tubuh tegang / melipat tangan di dada dengan dahi berkerut",
+      "category": "Gerak Tubuh & Bahasa Tubuh",
+      "rules": [
+        { "mood": "M01", "cf": 0.75 }
+      ]
+    },
+    {
+      "code": "G07",
+      "name": "Menatap daftar menu sangat lama (> 2 menit) sambil memegang dagu",
+      "category": "Perilaku Pemesanan",
+      "rules": [
+        { "mood": "M03", "cf": 0.85 }
+      ]
+    },
+    {
+      "code": "G08",
+      "name": "Bertanya 'Menu yang enak apa ya?' atau meminta rekomendasi",
+      "category": "Perilaku Pemesanan",
+      "rules": [
+        { "mood": "M03", "cf": 0.80 }
+      ]
+    },
+    {
+      "code": "G09",
+      "name": "Mengubah-ubah pilihan pesanan berkali-kali sebelum membayar",
+      "category": "Perilaku Pemesanan",
+      "rules": [
+        { "mood": "M03", "cf": 0.75 }
+      ]
+    },
+    {
+      "code": "G10",
+      "name": "Menanyakan detail komposisi / kandungan susu berulang kali dengan ragu",
+      "category": "Perilaku Pemesanan",
+      "rules": [
+        { "mood": "M03", "cf": 0.70 }
+      ]
+    },
+    {
+      "code": "G11",
+      "name": "Tersenyum hangat dan menyapa kasir terlebih dahulu",
+      "category": "Ekspresi & Wajah",
+      "rules": [
+        { "mood": "M04", "cf": 0.90 }
+      ]
+    },
+    {
+      "code": "G12",
+      "name": "Nada bicara santai, ramah, dan antusias",
+      "category": "Suara & Bicara",
+      "rules": [
+        { "mood": "M04", "cf": 0.85 }
+      ]
+    },
+    {
+      "code": "G13",
+      "name": "Kontak mata bersahabat dan mengapresiasi rekomendasi kasir",
+      "category": "Ekspresi & Wajah",
+      "rules": [
+        { "mood": "M04", "cf": 0.75 }
+      ]
+    },
+    {
+      "code": "G14",
+      "name": "Meminta pesanan dipercepat / bertanya 'Bisa langsung siap nggak?'",
+      "category": "Perilaku Pemesanan",
+      "rules": [
+        { "mood": "M02", "cf": 0.90 }
+      ]
+    }
+  ]
+}

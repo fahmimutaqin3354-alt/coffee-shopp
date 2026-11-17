@@ -15,13 +15,13 @@ return new class extends Migration
 
         $table->id();
 
-        $table->string('nama_menu');
+        $table->string('nama_menu')->nullable();
 
-        $table->integer('harga');
+        $table->integer('harga')->nullable();
 
-        $table->integer('jumlah');
+        $table->integer('jumlah')->default(1);
 
-        $table->integer('total');
+        $table->integer('total')->nullable();
 
         $table->timestamps();
 

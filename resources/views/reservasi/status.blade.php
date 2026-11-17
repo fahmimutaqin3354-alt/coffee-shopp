@@ -95,7 +95,7 @@
             <div class="col-md-3">
 
                 <h5>
-                    🪑 Meja {{ $r->meja }}
+                    🪑 Meja {{ $r->nomor_meja }}
                 </h5>
 
                 <p>

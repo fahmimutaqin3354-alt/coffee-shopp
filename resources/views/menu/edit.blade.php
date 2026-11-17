@@ -199,7 +199,7 @@
 
             <input type="text"
                    name="nama_kopi"
-                   value="{{ $menu->nama_kopi }}"
+                   value="{{ old('nama_kopi', $menu->nama_kopi) }}"
                    class="form-control">
 
         </div>
@@ -213,7 +213,7 @@
 
             <input type="number"
                    name="harga"
-                   value="{{ $menu->harga }}"
+                   value="{{ old('harga', $menu->harga) }}"
                    class="form-control">
 
         </div>
@@ -227,7 +227,7 @@
 
             <textarea name="deskripsi"
                       rows="4"
-                      class="form-control">{{ $menu->deskripsi }}</textarea>
+                      class="form-control">{{ old('deskripsi', $menu->deskripsi) }}</textarea>
 
         </div>
 
@@ -240,15 +240,15 @@
     <select name="jenis_menu"
             class="form-select">
 
-        <option value="Coffee">
+        <option value="Coffee" {{ old('jenis_menu', $menu->jenis_menu) == 'Coffee' ? 'selected' : '' }}>
             Coffee
         </option>
 
-        <option value="Non Coffee">
+        <option value="Non Coffee" {{ old('jenis_menu', $menu->jenis_menu) == 'Non Coffee' ? 'selected' : '' }}>
             Non Coffee
         </option>
 
-        <option value="Makanan">Makanan</option>
+        <option value="Makanan" {{ old('jenis_menu', $menu->jenis_menu) == 'Makanan' ? 'selected' : '' }}>Makanan</option>
 
     </select>
 
@@ -262,6 +262,7 @@
 
             <input type="text"
        name="kategori"
+       value="{{ old('kategori', $menu->kategori) }}"
        class="form-control form-control-lg bg-dark text-white border-0 rounded-4 p-3"
        placeholder="Contoh: Espresso, Latte, Tea">
 

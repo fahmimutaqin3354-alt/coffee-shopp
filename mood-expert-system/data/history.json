@@ -1,0 +1,33 @@
+[
+  {
+    "id": "HIST-1700000001",
+    "timestamp": "2026-11-17T14:30:00.000Z",
+    "symptoms": [
+      {
+        "code": "G03",
+        "name": "Sering melihat jam tangan/HP",
+        "cf_user": 0.8
+      },
+      {
+        "code": "G04",
+        "name": "Mengetuk-ngetuk meja / kaki gelisah",
+        "cf_user": 0.8
+      },
+      {
+        "code": "G06",
+        "name": "Langsung menanyakan durasi ('Kira-kira berapa lama ya mas?')",
+        "cf_user": 0.8
+      }
+    ],
+    "dominantMood": {
+      "code": "M02",
+      "name": "Terburu-buru / Gelisah",
+      "badge": "Terburu-buru",
+      "color": "amber",
+      "cf": 0.942,
+      "percentage": 94.2
+    },
+    "customerIdentifier": "Meja 03 / Pria Kemeja Putih",
+    "notes": "Pesan Americano Iced take away, disajikan express dalam 2 menit."
+  }
+]

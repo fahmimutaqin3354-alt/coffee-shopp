@@ -14,9 +14,11 @@ class Pesanan extends Model
         'total_harga',
         'metode_pembayaran',
         'status_pembayaran',
+        'uang_diterima',
+        'kembalian',
+        'kasir_nama',
         'status',
-        'kode_pesanan'
-
+        'kode_pesanan',
     ];
 
     public function menu()

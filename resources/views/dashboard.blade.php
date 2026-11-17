@@ -374,6 +374,53 @@ class="menu-link">
 
 </a>
 
+    <div class="px-3 pt-3 pb-2 text-uppercase fw-bold text-muted" style="font-size: 12px; letter-spacing: 1px;">
+        ☕ Sistem Pakar Kopi
+    </div>
+
+    <a href="{{ route('admin.aturan.index') }}"
+       class="menu-link">
+        📜 Aturan Rekomendasi
+    </a>
+
+    <a href="{{ route('admin.pertanyaan.index') }}"
+       class="menu-link">
+        ❓ Pertanyaan Konsultasi
+    </a>
+
+    <a href="{{ route('admin.riwayat.index') }}"
+       class="menu-link">
+        📊 Riwayat Konsultasi
+    </a>
+
+    <div class="px-3 pt-3 pb-2 text-uppercase fw-bold text-muted" style="font-size: 12px; letter-spacing: 1px;">
+        🛠️ Penanganan Masalah (CBR)
+    </div>
+
+    <a href="{{ route('admin.cbr.konsultasi') }}"
+       class="menu-link" style="color: #6f4e37; font-weight: 700;">
+        🔍 Solusi Masalah Operasional
+    </a>
+
+    <a href="{{ route('admin.cbr.index') }}"
+       class="menu-link">
+        📚 Basis Kasus (Case Base)
+    </a>
+
+    <div class="px-3 pt-3 pb-2 text-uppercase fw-bold text-muted" style="font-size: 12px; letter-spacing: 1px;">
+        🛒 Kasir & Karyawan
+    </div>
+
+    <a href="{{ route('kasir.index') }}"
+       class="menu-link" style="color: #c89b3c;">
+        💻 Buka Kasir POS
+    </a>
+
+    <a href="{{ route('admin.karyawan.index') }}"
+       class="menu-link">
+        👥 Kelola Karyawan
+    </a>
+
     <a href="/menu-pelanggan"
        class="menu-link">
 
@@ -454,7 +501,7 @@ class="menu-link">
 
         </div>
 
-       <div class="col-lg-4 col-md-6 col-12">
+        <div class="col-lg-4 col-md-6 col-12">
 
             <div class="card-dashboard text-center">
 
@@ -472,6 +519,54 @@ class="menu-link">
 
             </div>
 
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="card-dashboard text-center">
+                <div class="card-title">
+                    📜 Aturan Sistem Pakar
+                </div>
+                <div class="card-value" style="color: #c89b3c;">
+                    {{ $rulesCount ?? 0 }}
+                </div>
+                <div class="mt-2">
+                    <a href="{{ route('admin.aturan.index') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+                        Kelola Knowledge Base →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="card-dashboard text-center">
+                <div class="card-title">
+                    💻 Layanan Kasir POS Web
+                </div>
+                <div class="card-value" style="color: #22c55e;">
+                    AKTIF
+                </div>
+                <div class="mt-2">
+                    <a href="{{ route('kasir.index') }}" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
+                        Buka Antarmuka Kasir →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="card-dashboard text-center">
+                <div class="card-title">
+                    👥 Total Akun Karyawan / Staf
+                </div>
+                <div class="card-value" style="color: #6366f1;">
+                    {{ $karyawanCount ?? 0 }}
+                </div>
+                <div class="mt-2">
+                    <a href="{{ route('admin.karyawan.index') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+                        Kelola Akun Kasir →
+                    </a>
+                </div>
+            </div>
         </div>
 
     </div>

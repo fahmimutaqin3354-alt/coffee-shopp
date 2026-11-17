@@ -165,33 +165,39 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.m
 
     <!-- Tombol Pelanggan -->
     <a href="/menu-pelanggan"
-       class="btn btn-lg px-5 py-3 rounded-4 fw-bold shadow"
-
-style="
-    background:#c89b3c;
-    color:#1b1407;
-    border:none;
-">
+       class="btn btn-lg px-4 py-3 rounded-4 fw-bold shadow"
+       style="
+           background:#c89b3c;
+           color:#1b1407;
+           border:none;
+       ">
         <i class="bi bi-cup-hot-fill"></i>
         Lihat Menu
-
     </a>
 
-    <!-- Tombol Admin -->
+    <!-- Tombol Rekomendasi Sistem Pakar -->
+    <a href="/rekomendasi"
+       class="btn btn-lg px-4 py-3 rounded-4 fw-bold shadow"
+       style="
+           background:linear-gradient(135deg, #d4a745 0%, #b88628 100%);
+           color:#140f05;
+           border:none;
+       ">
+        <i class="bi bi-stars"></i>
+        Rekomendasi Kopi
+    </a>
+
+    <!-- Tombol Login Staff & Admin -->
     <a href="/login"
-       class="btn btn-lg px-5 py-3 rounded-4 fw-bold shadow"
-
-style="
-    background:#1b1407;
-    color:#f8f3e7;
-    border:2px solid #c89b3c;
-">
-
-        <i class="bi bi-shield-lock-fill"></i>
-        Login Admin
-
+       class="btn btn-lg px-4 py-3 rounded-4 fw-bold shadow"
+       style="
+           background:#1b1407;
+           color:#f8f3e7;
+           border:2px solid #c89b3c;
+       ">
+        <i class="bi bi-person-lock"></i>
+        Login Staff & Admin
     </a>
-
 </div>
 
     </div>
