@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CoffeeQuestionController;
 use App\Http\Controllers\Admin\CoffeeRuleController;
 use App\Http\Controllers\Admin\CoffeeConsultationController;
 use App\Http\Controllers\Admin\CbrController;
+use App\Http\Controllers\Admin\FuzzyStockController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\Admin\KaryawanController;
 use Illuminate\Support\Facades\Route;
@@ -129,6 +130,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', [CbrController::class, 'update'])->name('admin.cbr.update');
         Route::delete('/{id}', [CbrController::class, 'destroy'])->name('admin.cbr.destroy');
         Route::post('/{id}/toggle', [CbrController::class, 'toggle'])->name('admin.cbr.toggle');
+    });
+
+    // Sistem Pakar Rekomendasi Stok Bahan Baku — Fuzzy Logic (Admin Only)
+    Route::middleware(['admin'])->prefix('admin/fuzzy-stok')->name('admin.fuzzy-stok.')->group(function () {
+        Route::get('/', [FuzzyStockController::class, 'index'])->name('index');
+        Route::post('/simulate', [FuzzyStockController::class, 'simulate'])->name('simulate');
+        Route::post('/restock/{id}', [FuzzyStockController::class, 'quickRestock'])->name('restock');
+        Route::post('/', [FuzzyStockController::class, 'store'])->name('store');
+        Route::put('/{id}', [FuzzyStockController::class, 'update'])->name('update');
+        Route::delete('/{id}', [FuzzyStockController::class, 'destroy'])->name('destroy');
     });
 
     // Kasir POS Management (Karyawan & Admin)

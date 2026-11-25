@@ -408,6 +408,15 @@ class="menu-link">
     </a>
 
     <div class="px-3 pt-3 pb-2 text-uppercase fw-bold text-muted" style="font-size: 12px; letter-spacing: 1px;">
+        📦 Pengelolaan Stok (Fuzzy)
+    </div>
+
+    <a href="{{ route('admin.fuzzy-stok.index') }}"
+       class="menu-link" style="color: #8c6249; font-weight: 700;">
+        📦 Rekomendasi Stok (Fuzzy)
+    </a>
+
+    <div class="px-3 pt-3 pb-2 text-uppercase fw-bold text-muted" style="font-size: 12px; letter-spacing: 1px;">
         🛒 Kasir & Karyawan
     </div>
 

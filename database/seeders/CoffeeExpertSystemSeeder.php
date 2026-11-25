@@ -17,12 +17,14 @@ class CoffeeExpertSystemSeeder extends Seeder
     public function run(): void
     {
         // 1. Ensure admin and existing manager users have role 'admin'
-        User::where('email', 'admin@gmail.com')
-            ->orWhere('email', 'atmin@gmail.com')
-            ->orWhere('email', 'like', '%admin%')
-            ->orWhere('email', 'like', '%atmin%')
-            ->orWhere('name', 'like', '%atmin%')
-            ->orWhereIn('id', [1, 2, 3, 5])
+        User::where('email', '!=', 'kasir@gmail.com')
+            ->where(function ($query) {
+                $query->where('email', 'admin@gmail.com')
+                    ->orWhere('email', 'atmin@gmail.com')
+                    ->orWhere('email', 'like', '%admin%')
+                    ->orWhere('email', 'like', '%atmin%')
+                    ->orWhere('name', 'like', '%atmin%');
+            })
             ->update(['role' => 'admin']);
 
         // 2. Ensure Espresso menu item exists in database

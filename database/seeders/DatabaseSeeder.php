@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::firstOrCreate(
-            ['email' => 'test@example.com'],
+            ['email' => 'admin@gmail.com'],
             [
-                'name' => 'Test User',
+                'name' => 'admin',
                 'password' => bcrypt('password'),
-                'role' => 'pelanggan',
+                'role' => 'admin',
             ]
         );
 
@@ -33,6 +33,29 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $this->call(CoffeeExpertSystemSeeder::class);
+        User::firstOrCreate(
+            ['email' => 'fahmi@gmail.com'],
+            [
+                'name' => 'fahmi',
+                'password' => bcrypt('password'),
+                'role' => 'pelanggan',
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'password' => bcrypt('password'),
+                'role' => 'pelanggan',
+            ]
+        );
+
+        $this->call([
+            MenuSeeder::class,
+            CoffeeExpertSystemSeeder::class,
+            CbrCaseSeeder::class,
+            BahanBakuSeeder::class,
+        ]);
     }
 }
